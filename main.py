@@ -635,55 +635,96 @@ async def txt_handler(bot: Client, m: Message):
     await input6.delete(True)
 
     if input6.photo:
-        thumb = await input6.download()  # Use the photo sent by the user
-    elif raw_text6.startswith("http://") or raw_text6.startswith("https://"):
-        # If a URL is provided, download thumbnail from the URL
-        getstatusoutput(f"wget '{raw_text6}' -O 'thumb.jpg'")
-        thumb = "thumb.jpg"
-    else:
-        thumb = raw_text6
+    thumb = await input6.download()  # Use the photo sent by the user
+elif raw_text6.startswith("http://") or raw_text6.startswith("https://"):
+    # If a URL is provided, download thumbnail from the URL
+    getstatusoutput(f"wget '{raw_text6}' -O 'thumb.jpg'")
+    thumb = "thumb.jpg"
+else:
+    thumb = raw_text6
 
-    await editable.edit("__Please Provide Channel id or where you want to Upload video or Sent Video otherwise /d __\n\n__And make me admin in this channel then i can able to Upload otherwise i can't__")
-    input7: Message = await bot.listen(editable.chat.id)
-    raw_text7 = input7.text
-    if "/d" in input7.text:
-        channel_id = m.chat.id
-    else:
-        channel_id = input7.text
-    await input7.delete()     
-    await editable.delete()
+await editable.edit(
+    "__Please Provide Channel id or where you want to Upload video or Sent Video otherwise /d __\n\n"
+    "__And make me admin in this channel then i can able to Upload otherwise i can't__"
+)
+input7: Message = await bot.listen(editable.chat.id)
+raw_text7 = input7.text
 
-    if "/d" in raw_text7:
-        batch_message = await m.reply_text(f"<blockquote>🎯Target Batch : {b_name}<blockquote>")
-    else:
-        try:
-            batch_message = await bot.send_message(chat_id=channel_id, text=f"<blockquote>🎯Target Batch : {b_name}<blockquote>")
-            await bot.send_message(chat_id=m.chat.id, text=f"<blockquote>🎯Target Batch : {b_name}<blockquote>\n\n🔄 Your Task is under processing, please check your Set Channel📱. Once your task is complete, I will inform you 📩")
-        except Exception as e:
-            await m.reply_text(f"**Fail Reason »** {e}\n")
-            return
-        
-    failed_count = 0
-    count =int(raw_text)    
-    arg = int(raw_text)
+if "/d" in input7.text:
+    channel_id = m.chat.id
+else:
+    channel_id = input7.text
+
+await input7.delete()
+await editable.delete()
+
+if "/d" in raw_text7:
+    batch_message = await m.reply_text(f"<blockquote>🎯Target Batch : {b_name}</blockquote>")
+else:
     try:
-        for i in range(arg-1, len(links)):
-            Vxy = links[i][1].replace("file/d/","uc?export=download&id=").replace("www.youtube-nocookie.com/embed", "youtu.be").replace("?modestbranding=1", "").replace("/view?usp=sharing","")
-            url = "https://" + Vxy
-            link0 = "https://" + Vxy
+        batch_message = await bot.send_message(
+            chat_id=channel_id, text=f"<blockquote>🎯Target Batch : {b_name}</blockquote>"
+        )
+        await bot.send_message(
+            chat_id=m.chat.id,
+            text=f"<blockquote>🎯Target Batch : {b_name}</blockquote>\n\n"
+                 "🔄 Your Task is under processing, please check your Set Channel📱. "
+                 "Once your task is complete, I will inform you 📩"
+        )
+    except Exception as e:
+        await m.reply_text(f"**Fail Reason »** {e}\n")
+        return
 
-            name1 = links[i][0].replace("(", "[").replace(")", "]").replace("_", "").replace("\t", "").replace(":", "").replace("/", "").replace("+", "").replace("#", "").replace("|", "").replace("@", "").replace("*", "").replace(".", "").replace("https", "").replace("http", "").strip()
-            name = f'{name1[:60]}'
+failed_count = 0
+count = int(raw_text)
+arg = int(raw_text)
 
-            name1 = links[i][0].replace("(", "[").replace(")", "]").replace("_", "").replace("\t", "").replace(":", "").replace("/", "").replace("+", "").replace("#", "").replace("|", "").replace("@", "").replace("*", "").replace(".", "").replace("https", "").replace("http", "").strip()
-            #..............................................................................
-    t_match = re.search(r"[\(\[]([^\)\]]+)[\)\]]", raw_title)
-    t_name = t_match.group(1).strip() if t_match else "Untitled"
+try:
+    for i in range(arg - 1, len(links)):
+        Vxy = (
+            links[i][1]
+            .replace("file/d/", "uc?export=download&id=")
+            .replace("www.youtube-nocookie.com/embed", "youtu.be")
+            .replace("?modestbranding=1", "")
+            .replace("/view?usp=sharing", "")
+        )
+        url = "https://" + Vxy
+        link0 = "https://" + Vxy
 
-    v_name = f"{audio_title} | {t_name}"
-    name = f"{audio_title[:60]}"
-    name1 = f"{audio_title[:60]}"
-    namef = f"{v_name[:60]}"
+        # Clean the file name
+        name1 = (
+            links[i][0]
+            .replace("(", "[")
+            .replace(")", "]")
+            .replace("_", "")
+            .replace("\t", "")
+            .replace(":", "")
+            .replace("/", "")
+            .replace("+", "")
+            .replace("#", "")
+            .replace("|", "")
+            .replace("@", "")
+            .replace("*", "")
+            .replace(".", "")
+            .replace("https", "")
+            .replace("http", "")
+            .strip()
+        )
+
+        # 🔹 Auto detect topic from title (e.g., (Phy), (Chem), (Bio))
+        raw_title = links[i][0]
+        t_match = re.search(r"[\(\[]([^\)\]]+)[\)\]]", raw_title)
+        t_name = t_match.group(1).strip() if t_match else "Untitled"
+
+        # 🔹 Clean title for final naming
+        v_name = re.sub(r"^[\(\[][^\)\]]+[\)\]]\s*", "", raw_title)
+        v_name = re.sub(r"[\(\[][^\)\]]+[\)\]]", "", v_name)
+        v_name = re.sub(r":.*", "", v_name).strip()
+
+        # 🔹 Final formatted names
+        name = f"{str(count).zfill(3)}) {v_name[:60]}"
+        name1 = f"{v_name[:60]}"
+        namef = f"{v_name[:60]}"
 
 else:
     raw_title = links[i][0]
