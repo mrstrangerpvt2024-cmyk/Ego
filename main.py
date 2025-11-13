@@ -674,6 +674,44 @@ async def txt_handler(bot: Client, m: Message):
 
             name1 = links[i][0].replace("(", "[").replace(")", "]").replace("_", "").replace("\t", "").replace(":", "").replace("/", "").replace("+", "").replace("#", "").replace("|", "").replace("@", "").replace("*", "").replace(".", "").replace("https", "").replace("http", "").strip()
             name = f'{name1[:60]}'
+
+            name1 = links[i][0].replace("(", "[").replace(")", "]").replace("_", "").replace("\t", "").replace(":", "").replace("/", "").replace("+", "").replace("#", "").replace("|", "").replace("@", "").replace("*", "").replace(".", "").replace("https", "").replace("http", "").strip()
+
+if "youtu" in url:
+    # 🔹 YouTube का title अपने आप fetch करेगा
+    try:
+        oembed_url = f"https://www.youtube.com/oembed?url={url}&format=json"
+        response = requests.get(oembed_url)
+        if response.status_code == 200:
+            audio_title = response.json().get('title', 'YouTube Video')
+        else:
+            audio_title = "YouTube Video"
+    except Exception:
+        audio_title = "YouTube Video"
+    
+    audio_title = audio_title.replace("_", " ")
+    raw_title = links[i][0]
+
+    # 🔹 Caption में अगर (Phy) / (Chem) / (Bio) लिखा है तो topic निकालेगा
+    t_match = re.search(r"[\(\[]([^\)\]]+)[\)\]]", raw_title)
+    t_name = t_match.group(1).strip() if t_match else "Untitled"
+
+    v_name = f"{audio_title} | {t_name}"
+    name = f"{audio_title[:60]}"
+    name1 = f"{audio_title[:60]}"
+    namef = f"{v_name[:60]}"
+
+else:
+    raw_title = links[i][0]
+    t_match = re.search(r"[\(\[]([^\)\]]+)[\)\]]", raw_title)
+    t_name = t_match.group(1).strip() if t_match else "Untitled"
+
+    v_name = re.sub(r"^[\(\[][^\)\]]+[\)\]]\s*", "", raw_title)
+    v_name = re.sub(r"[\(\[][^\)\]]+[\)\]]", "", v_name)
+    v_name = re.sub(r":.*", "", v_name).strip()
+
+    name = f'{str(count).zfill(3)}) {name1[:60]}'
+    namef = f'{v_name}'
             
             if "visionias" in url:
                 async with ClientSession() as session:
