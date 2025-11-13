@@ -712,6 +712,7 @@ else:
 
     name = f'{str(count).zfill(3)}) {name1[:60]}'
     namef = f'{v_name}'
+#........................................................................................................................................................................................
             
             if "visionias" in url:
                 async with ClientSession() as session:
@@ -779,7 +780,7 @@ else:
                 cmd = f'yt-dlp -f "{ytf}" "{url}" -o "{name}.mp4"'
 
             try:
-                cc = f'╭━━━━━━━━━━━╮\n**🎥 VIDEO ID :** {str(count).zfill(3)}.\n╰━━━━━━━━━━━╯\n\n**📄 Title : {name1}** ({res}) ᴍʀꜱᴛʀᴀɴɢᴇʀ™.mkv\n\n**🔖 Batch :** `{b_name}`\n\n**📥 Extracted By :** {CR}'
+                cc = f'╭━━━━━━━━━━━╮\n<blockquote><b>🗂️{t_name}</b></blockquote>\n╰━━━━━━━━━━━╯\n**🎥 VIDEO ID :** {str(count).zfill(3)}.\n**📄 Title : {name1}** ({res}) ᴍʀꜱᴛʀᴀɴɢᴇʀ™.mkv\n\n**🔖 Batch :** `{b_name}`\n\n**📥 Extracted By :** {CR}'
                 cpw = f'╭━━━━━━━━━━━╮\n**🎥 VIDEO ID :** {str(count).zfill(3)}.\n╰━━━━━━━━━━━╯\n\n**📄 Title : {name1}** ({res}) ᴍʀꜱᴛʀᴀɴɢᴇʀ™.mkv\n\n**🔗Video Url :** <a href="{url}">__Click Here to Watch Video__</a>\n\n\n**🔖 Batch :** `{b_name}`\n\n**📥 Extracted By :** {CR}'
                 cyt = f'╭━━━━━━━━━━━╮\n**🎥 VIDEO ID :** {str(count).zfill(3)}.\n╰━━━━━━━━━━━╯\n\n**📄 Title : {name1}** ({res}) ᴍʀꜱᴛʀᴀɴɢᴇʀ™.mp4\n\n**🔗 Video Url :** <a href="{url}">__Click Here to Watch Video__</a>\n\n**🔖 Batch :** `{b_name}`\n\n**📥 Extracted By :** {CR}'
                 cpvod = f'╭━━━━━━━━━━━╮\n**🎥 VIDEO ID :** {str(count).zfill(3)}.\n╰━━━━━━━━━━━╯\n\n**📄 Title : {name1}** ({res}) ᴍʀꜱᴛʀᴀɴɢᴇʀ™.mkv\n\n**🔗Video Url :** <a href="{url}">__Click Here to Watch Video__</a>\n\n\n**🔖 Batch :** `{b_name}`\n\n**📥 Extracted By :** {CR}'
