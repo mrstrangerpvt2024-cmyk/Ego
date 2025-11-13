@@ -676,8 +676,7 @@ async def txt_handler(bot: Client, m: Message):
             name = f'{name1[:60]}'
 
             name1 = links[i][0].replace("(", "[").replace(")", "]").replace("_", "").replace("\t", "").replace(":", "").replace("/", "").replace("+", "").replace("#", "").replace("|", "").replace("@", "").replace("*", "").replace(".", "").replace("https", "").replace("http", "").strip()
-            
-    # 🔹 Caption में अगर (Phy) / (Chem) / (Bio) लिखा है तो topic निकालेगा
+            #..............................................................................
     t_match = re.search(r"[\(\[]([^\)\]]+)[\)\]]", raw_title)
     t_name = t_match.group(1).strip() if t_match else "Untitled"
 
