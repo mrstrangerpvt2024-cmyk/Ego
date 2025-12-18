@@ -741,15 +741,15 @@ async def txt_handler(bot: Client, m: Message):
                 cmd = f'yt-dlp -f "{ytf}" "{url}" -o "{name}.mp4"'
 
             try:
-                cc = f'╭━━━━━━━━━━━╮\n**🎥 VIDEO ID :** {str(count).zfill(3)}.\n╰━━━━━━━━━━━╯\n\n**📄 Title : {name1}** ({res}) ᴍʀꜱᴛʀᴀɴɢᴇʀ™.mkv\n\n**🔖 Batch :** `{b_name}`\n\n**📥 Extracted By : [{CR}]**'
-                cpw = f'╭━━━━━━━━━━━╮\n**🎥 VIDEO ID :** {str(count).zfill(3)}.\n╰━━━━━━━━━━━╯\n\n**📄 Title : {name1}** ({res}) ᴍʀꜱᴛʀᴀɴɢᴇʀ™.mkv\n\n**🔗Video Url :** <a href="{url}">__Click Here to Watch Video__</a>\n\n\n**🔖 Batch :** `{b_name}`\n\n**📥 Extracted By : [{CR}]**'
-                cyt = f'╭━━━━━━━━━━━╮\n**🎥 VIDEO ID :** {str(count).zfill(3)}.\n╰━━━━━━━━━━━╯\n\n**📄 Title : {name1}** ({res}) ᴍʀꜱᴛʀᴀɴɢᴇʀ™.mp4\n\n**🔗 Video Url :** <a href="{url}">__Click Here to Watch Video__</a>\n\n**🔖 Batch :** `{b_name}`\n\n**📥 Extracted By : [{CR}]**'
-                cpvod = f'╭━━━━━━━━━━━╮\n**🎥 VIDEO ID :** {str(count).zfill(3)}.\n╰━━━━━━━━━━━╯\n\n**📄 Title : {name1}** ({res}) ᴍʀꜱᴛʀᴀɴɢᴇʀ™.mkv\n\n**🔗Video Url :** <a href="{url}">__Click Here to Watch Video__</a>\n\n\n**🔖 Batch :** `{b_name}`\n\n**📥 Extracted By : [{CR}]*'
-                cimg = f'╭━━━━━━━━━━━╮\n**🖼️ IMAGE ID :** {str(count).zfill(3)}.\n╰━━━━━━━━━━━╯\n\n**📄 Title : {name1}** ᴍʀꜱᴛʀᴀɴɢᴇʀ™.jpg\n\n**🔖 Batch :** `{b_name}`\n\n**📥 Extracted By : [{CR}]**'
-                cczip = f'╭━━━━━━━━━━━╮\n**📁 FILE ID :** {str(count).zfill(3)}.\n╰━━━━━━━━━━━╯\n\n**📄 Title : {name1}** ᴍʀꜱᴛʀᴀɴɢᴇʀ™.zip\n\n**🔖 Batch :** `{b_name}`\n\n**📥 Extracted By : [{CR}]**'
+                cc = f'╭━━━━━━━━━━━╮\n**🎥 VIDEO ID :** {str(count).zfill(3)}.\n╰━━━━━━━━━━━╯\n\n**📄 Title : {name1}** ({res}) ᴍʀꜱᴛʀᴀɴɢᴇʀ™.mkv\n\n**🔖 Batch :** `{b_name}`\n\n**📥 Extracted By : {CR}**'
+                cpw = f'╭━━━━━━━━━━━╮\n**🎥 VIDEO ID :** {str(count).zfill(3)}.\n╰━━━━━━━━━━━╯\n\n**📄 Title : {name1}** ({res}) ᴍʀꜱᴛʀᴀɴɢᴇʀ™.mkv\n\n**🔗Video Url :** <a href="{url}">__Click Here to Watch Video__</a>\n\n\n**🔖 Batch :** `{b_name}`\n\n**📥 Extracted By : {CR}**'
+                cyt = f'╭━━━━━━━━━━━╮\n**🎥 VIDEO ID :** {str(count).zfill(3)}.\n╰━━━━━━━━━━━╯\n\n**📄 Title : {name1}** ({res}) ᴍʀꜱᴛʀᴀɴɢᴇʀ™.mp4\n\n**🔗 Video Url :** <a href="{url}">__Click Here to Watch Video__</a>\n\n**🔖 Batch :** `{b_name}`\n\n**📥 Extracted By : {CR}**'
+                cpvod = f'╭━━━━━━━━━━━╮\n**🎥 VIDEO ID :** {str(count).zfill(3)}.\n╰━━━━━━━━━━━╯\n\n**📄 Title : {name1}** ({res}) ᴍʀꜱᴛʀᴀɴɢᴇʀ™.mkv\n\n**🔗Video Url :** <a href="{url}">__Click Here to Watch Video__</a>\n\n\n**🔖 Batch :** `{b_name}`\n\n**📥 Extracted By : {CR}*'
+                cimg = f'╭━━━━━━━━━━━╮\n**🖼️ IMAGE ID :** {str(count).zfill(3)}.\n╰━━━━━━━━━━━╯\n\n**📄 Title : {name1}** ᴍʀꜱᴛʀᴀɴɢᴇʀ™.jpg\n\n**🔖 Batch :** `{b_name}`\n\n**📥 Extracted By : {CR}**'
+                cczip = f'╭━━━━━━━━━━━╮\n**📁 FILE ID :** {str(count).zfill(3)}.\n╰━━━━━━━━━━━╯\n\n**📄 Title : {name1}** ᴍʀꜱᴛʀᴀɴɢᴇʀ™.zip\n\n**🔖 Batch :** `{b_name}`\n\n**📥 Extracted By : {CR}**'
                 cc1 = f'╭━━━━━━━━━━━╮\n**📁 FILE ID :** {str(count).zfill(3)}.\n╰━━━━━━━━━━━╯\n\n**📄 Title : {name1}** ᴍʀꜱᴛʀᴀɴɢᴇʀ™.pdf\n\n**🔖 Batch :** `{b_name}`\n\n**📥 Extracted By : [{CR}]**'
-                ccm = f'╭━━━━━━━━━━━╮\n**🎵 AUDIO ID :** {str(count).zfill(3)}.\n╰━━━━━━━━━━━╯\n\n**📄 Title : {name1}** ({res}) ᴍʀꜱᴛʀᴀɴɢᴇʀ™.mp3\n\n**🔖 Batch :** `{b_name}`\n\n**📥 Extracted By : [{CR}]**'
-                cchtml = f'╭━━━━━━━━━━━╮\n**🌐 HTML ID :** {str(count).zfill(3)}.\n╰━━━━━━━━━━━╯\n\n**📄 Title : {name1}** ({res}) ᴍʀꜱᴛʀᴀɴɢᴇʀ™.html\n\n**🔖 Batch :** `{b_name}`\n\n**📥 Extracted By : [{CR}]**'
+                ccm = f'╭━━━━━━━━━━━╮\n**🎵 AUDIO ID :** {str(count).zfill(3)}.\n╰━━━━━━━━━━━╯\n\n**📄 Title : {name1}** ({res}) ᴍʀꜱᴛʀᴀɴɢᴇʀ™.mp3\n\n**🔖 Batch :** `{b_name}`\n\n**📥 Extracted By : {CR}**'
+                cchtml = f'╭━━━━━━━━━━━╮\n**🌐 HTML ID :** {str(count).zfill(3)}.\n╰━━━━━━━━━━━╯\n\n**📄 Title : {name1}** ({res}) ᴍʀꜱᴛʀᴀɴɢᴇʀ™.html\n\n**🔖 Batch :** `{b_name}`\n\n**📥 Extracted By : {CR}**'
                 
                 if "drive" in url:
                     try:
